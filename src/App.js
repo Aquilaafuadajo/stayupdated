@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Header from './components/Header/header.component'
+
+import './App.css';
+import Hompage from './pages/homepage/homepage.component';
+
+class App extends Component {
+  state = { 
+      url: `https://newsapi.org/v2/top-headlines?language=en&category=entertainment&apiKey=8a8c2162bdf243d48e6e87b8215df996`
+    }
+
+  render() { 
+    return (
+      <div className='App'>
+        <Header />
+        <Hompage />
+      </div>
+      );
+  }
 }
 
 export default App;
