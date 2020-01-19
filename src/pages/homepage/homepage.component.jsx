@@ -22,23 +22,35 @@ const Hompage = () => {
       <div className='homepage'>
         {
           categoriesApi.map((category, i) => (
-            <Async className='homepage' key={i} promiseFn={category}>
+            <Async key={i} promiseFn={category}>
               {
                 ({ data, err, isLoading }) => {
                   if (isLoading) return (<img src={spinner} className="App-logo" alt="logo" />)
                   if (err) return <h1>{`Something went wrong: ${err.message}`}</h1>
 
                   if (data) return(
-                    data.articles.map(({urlToImage, author, description }, i) => {
+                    data.articles.map(({urlToImage, author, description, content }, i) => {
                       if (i<5)
                       return (
-                        <div className='news-card' key={i}>
-                          <img src={urlToImage} alt="img" />
-                          <p>By: {author}</p>
-                          <p>{description}</p>
-                        </div>
+                        <details key={i}>
+                          <summary className='news-card'>
+                            <img src={urlToImage} alt="img" />
+                            <p>By: {author}</p>
+                            <p>{description}</p>
+                          </summary>
+                          <div>
+                            <img src={urlToImage} alt="img" />
+                            <p>{content}</p>
+                            <p>{content}</p>
+                            <p>{content}</p>
+                            <p>{content}</p><p>{content}</p><p>{content}</p>
+                          </div>
+                        </details>
                       )
-                      }))
+                      return ''
+                      }
+                    )
+                  )
                 }
               }
             </Async>
