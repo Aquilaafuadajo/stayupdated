@@ -1,5 +1,6 @@
 .homepage {
   width: 100%;
+  margin-top: 50px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-gap: 20px;
@@ -51,7 +52,7 @@ details > div {
   overflow: scroll;
   width: 80%;
   height: auto;
-  max-height: 90vh;
+  max-height: 90%;
 
   margin: 5vh auto;
   position: fixed;
@@ -63,7 +64,6 @@ details > div {
   border: 1px solid #d1d5da;
   border-radius: 3px;
   box-shadow: 1px 1px 10px rgba(0,0,0,0.3);
-  border-top: 4px solid rgb(7, 7, 7);
 
   animation-name: fade-in;
   animation-duration: 300ms;
@@ -72,7 +72,7 @@ details > div {
 
   &> img {
     width: 100%;
-    height: auto;
+    
   }
   p {
     color: black;

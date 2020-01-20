@@ -30,7 +30,7 @@ const Hompage = () => {
 
                   if (data) return(
                     data.articles.map(({urlToImage, author, description, content }, i) => {
-                      if (i<5)
+                      if (i<5 && urlToImage)
                       return (
                         <details key={i}>
                           <summary className='news-card'>
@@ -40,7 +40,7 @@ const Hompage = () => {
                           </summary>
                           <div>
                             <img src={urlToImage} alt="img" />
-                            <p>{content}</p>
+                            <p>{content? content: 'no content to show'}</p>
                             <p>{content}</p>
                             <p>{content}</p>
                             <p>{content}</p><p>{content}</p><p>{content}</p>
