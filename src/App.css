@@ -1,10 +1,15 @@
+body {
+  font-family: 'Open Sans Condensed', sans-serif;
+}
 .App {
   display: grid;
   width: 100%;
   margin: 0 auto;
 }
 
-
+a {
+  text-decoration: none;
+}
 
 
 @media (prefers-reduced-motion: no-preference) { 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Async from 'react-async';
-import spinner from '../../assets/Spinner.svg';
+// import spinner from '../../assets/Spinner.svg';
 
 import './homepage.styles.scss';
 
@@ -9,7 +9,7 @@ const api = (category) => `https://newsapi.org/v2/top-headlines?country=us&categ
 
 fetch("https://newsapi.org/v2/top-headlines?language=en&country=us&category=entertainment&apiKey=8a8c2162bdf243d48e6e87b8215df996").then(response => response.json()).then(response => console.log(response.articles))
 
-const categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology'];
+const categories = ['Business', 'Entertainment', 'General', 'Health', 'Science', 'Sports', 'technology'];
 
 const categoriesApi = categories.map((category) => api(category))
                                 .map((categoryApi) => 
@@ -25,7 +25,7 @@ const Hompage = () => {
             <Async key={i} promiseFn={category}>
               {
                 ({ data, err, isLoading }) => {
-                  if (isLoading) return (<img src={spinner} className="App-logo" alt="logo" />)
+                  if (isLoading) return ('')
                   if (err) return <h1>{`Something went wrong: ${err.message}`}</h1>
 
                   if (data) return(
@@ -35,8 +35,8 @@ const Hompage = () => {
                         <details key={i}>
                           <summary className='news-card'>
                             <img src={urlToImage} alt="img" />
-                            <p>By: {author}</p>
                             <p>{description}</p>
+                            <p>By: {author}</p>
                           </summary>
                           <div>
                             <img src={urlToImage} alt="img" />
@@ -47,7 +47,7 @@ const Hompage = () => {
                           </div>
                         </details>
                       )
-                      return ''
+                      return ('')
                       }
                     )
                   )
