@@ -16,6 +16,10 @@
   }
 }
 
+.underline {
+  border-bottom: 3px solid white;
+}
+
 @media only screen and (max-width: 600px) {
   .header {
       font-size: 0.5em;

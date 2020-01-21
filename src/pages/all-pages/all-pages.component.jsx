@@ -2,7 +2,7 @@ import React from 'react';
 
 import Async from 'react-async';
 
-const api = (category) => `https://newsapi.org/v2/top-headlines?country=ng&category=${category}&apiKey=8a8c2162bdf243d48e6e87b8215df996`;
+const api = (category) => `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=8a8c2162bdf243d48e6e87b8215df996`;
 
 const categories = ['Business', 'Entertainment', 'General', 'Health', 'Science', 'Sports', 'Technology'];
 
