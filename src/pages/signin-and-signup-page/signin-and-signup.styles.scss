@@ -1,8 +1,11 @@
 .sign-in-and-sign-up {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(2, 50%);
   grid-gap: 50px;
   padding: 30px;
   width: 80%;
   margin-top: 50px;
+  margin-left: 5%;
+  margin-right: 5%;
+  height: 90%;
 }
