@@ -5,7 +5,9 @@ import {Route, Switch} from 'react-router-dom';
 
 import Header from './components/Header/header.component';
 import {Business, Entertainment, General, Health, Science, Sport, Technology} from './pages/all-pages/all-pages.component';
-import SignInAndSignUpPage from './pages/signin-and-signup-page/signin-and-signup.component'
+import SignInAndSignUpPage from './pages/signin-and-signup-page/signin-and-signup.component';
+
+import {auth} from './firebase/firebase.utils';
 
 import './App.css';
 import Hompage from './pages/homepage/homepage.component';
@@ -16,10 +18,25 @@ class App extends Component {
       currentUser: null
     }
 
+  unSubscribeFromAuth = null; //to close subcriptions when the component unmounts, because we don't want any memory leaks in our javascript application
+
+  componentDidMount() {
+    this.unSubscribeFromAuth = auth.onAuthStateChanged(user => {
+      this.setState({
+        currentUser: user
+      })
+      console.log(this.state.currentUser)
+    })
+  }
+
+  componentWillUnmount() { //this closes the subscription
+    this.unSubscribeFromAuth()
+  }
+
   render() { 
     return (
       <div >
-        <Header />
+        <Header currentUser={this.state.currentUser}/>
         <Switch>
           <Route exact path='/' component={Hompage}></Route> 
           <Route exact path='/business' component={Business}></Route> 
