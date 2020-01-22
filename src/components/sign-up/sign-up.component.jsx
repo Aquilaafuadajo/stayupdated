@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
 
+import {auth, createUserProfileDocument} from '../../firebase/firebase.utils';
+
 import './sign-up.styles.scss';
 
 class SignUp extends Component {
@@ -16,17 +18,25 @@ class SignUp extends Component {
       }
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault()
     const {displayName, email, password, confirmPassword} = this.state
     if (password !== confirmPassword) {
       alert('passwords do not match')
+      return;
+    }
+    try{
+      const {user} = await auth.createUserWithEmailAndPassword(email, password);
+      console.log(user)
+      await createUserProfileDocument(user, {displayName})
       this.setState({
+        displayName: '',
+        email: '',
         password: '',
         confirmPassword: ''
       })
-      return;
-    }
+    }catch(error){ console.log('there was an error', error.message)}
+    
 
   }
 

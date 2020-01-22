@@ -7,7 +7,7 @@ import Header from './components/Header/header.component';
 import {Business, Entertainment, General, Health, Science, Sport, Technology} from './pages/all-pages/all-pages.component';
 import SignInAndSignUpPage from './pages/signin-and-signup-page/signin-and-signup.component';
 
-import {auth} from './firebase/firebase.utils';
+import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 
 import './App.css';
 import Hompage from './pages/homepage/homepage.component';
@@ -21,11 +21,20 @@ class App extends Component {
   unSubscribeFromAuth = null; //to close subcriptions when the component unmounts, because we don't want any memory leaks in our javascript application
 
   componentDidMount() {
-    this.unSubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({
-        currentUser: user
-      })
-      console.log(this.state.currentUser)
+    this.unSubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if(userAuth) {
+        const userRef = await createUserProfileDocument(userAuth)
+      
+        userRef.onSnapshot(snapshot => 
+          {this.setState({
+            currentUser: {
+              id: snapshot.id,
+              ...snapshot.data()
+            }
+          }, () => console.log(this.state))
+        console.log(snapshot.data())}
+        )
+      }else{this.setState({currentUser: userAuth})}
     })
   }
 
