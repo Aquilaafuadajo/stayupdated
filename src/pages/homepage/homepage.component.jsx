@@ -34,7 +34,7 @@ const Hompage = () => {
                       return (
                         <details key={i}>
                           <summary className='news-card'>
-                            <img src={urlToImage} alt="img" />
+                            <img src={urlToImage} alt="img" /> 
                             <p>{description}</p>
                             <p>By: {author}</p>
                           </summary>
