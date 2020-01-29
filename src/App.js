@@ -30,15 +30,13 @@ class App extends Component {
         const userRef = await createUserProfileDocument(userAuth)
       
         userRef.onSnapshot(snapshot => 
-          {setCurrentUser({
-            currentUser: {
+          {setCurrentUser({ 
               id: snapshot.id,
               ...snapshot.data()
-            }
-          }, () => console.log(this.state))
+          })
         console.log(snapshot.data())}
         )
-      }else{setCurrentUser({currentUser: userAuth})}
+      }else{setCurrentUser(userAuth)}
     })
   }
 
@@ -52,7 +50,7 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path='/' component={Hompage}></Route> 
-          <Route exact path='/business' component={Business}></Route> 
+          <Route exact path='/business' component={Business}></Route>
           <Route exact path='/entertainment' component={Entertainment}></Route>
           <Route exact path='/general' component={General}></Route>
           <Route exact path='/health' component={Health}></Route>
@@ -66,9 +64,13 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+})
+
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 })
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
